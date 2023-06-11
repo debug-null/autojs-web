@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "formidable": "^2.1.1"
+    "formidable": "^2.1.1",
+    "socket.io": "^4.6.2",
+    "uuid": "^9.0.0",
+    "ws": "^8.13.0"
   }
 }

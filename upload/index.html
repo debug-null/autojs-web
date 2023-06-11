@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>Express session demo</title>
+  </head>
+  <body>
+    <h1>Choose an action.</h1>
+    <button id="login" type="button" title="Simulate login">
+      Simulate login
+    </button>
+    <button id="logout" type="button" title="Simulate logout">
+      Simulate logout
+    </button>
+    <button id="wsButton" type="button" title="Open WebSocket connection">
+      Open WebSocket connection
+    </button>
+    <button id="wsSendButton" type="button" title="Send WebSocket message">
+      Send WebSocket message
+    </button>
+    <pre id="messages" style="height: 400px; overflow: scroll"></pre>
+  </body>
+</html>
+<script>
+    (function () {
+  const messages = document.querySelector('#messages');
+  const wsButton = document.querySelector('#wsButton');
+  const wsSendButton = document.querySelector('#wsSendButton');
+  const logout = document.querySelector('#logout');
+  const login = document.querySelector('#login');
+
+  function showMessage(message) {
+    messages.textContent += `\n${message}`;
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function handleResponse(response) {
+    return response.ok
+      ? response.json().then((data) => JSON.stringify(data, null, 2))
+      : Promise.reject(new Error('Unexpected response'));
+  }
+
+  login.onclick = function () {
+    fetch('/login', { method: 'POST', credentials: 'same-origin' })
+      .then(handleResponse)
+      .then(showMessage)
+      .catch(function (err) {
+        showMessage(err.message);
+      });
+  };
+
+  logout.onclick = function () {
+    fetch('/logout', { method: 'DELETE', credentials: 'same-origin' })
+      .then(handleResponse)
+      .then(showMessage)
+      .catch(function (err) {
+        showMessage(err.message);
+      });
+  };
+
+  let ws;
+
+  wsButton.onclick = function () {
+    if (ws) {
+      ws.onerror = ws.onopen = ws.onclose = null;
+      ws.close();
+    }
+
+    ws = new WebSocket(`ws://localhost:3000?name=第一台`);
+    ws.onerror = function () {
+      showMessage('WebSocket error');
+    };
+    ws.onopen = function () {
+      showMessage('WebSocket connection established');
+    };
+    ws.onclose = function () {
+      showMessage('WebSocket connection closed');
+      ws = null;
+    };
+  };
+
+  wsSendButton.onclick = function () {
+    if (!ws) {
+      showMessage('No WebSocket connection');
+      return;
+    }
+
+    ws.send('Hello World!');
+    showMessage('Sent "Hello World!"');
+  };
+})();
+
+</script>
