@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2015"
+    ],
+    "allowJs": true,
+    "checkJs": false,
+    "importHelpers": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "allowUmdGlobalAccess": true,
+    "baseUrl": ".",
+    "paths": {},
+    "types": [
+      "node",
+      "./types/autox/adbkit.d.ts",
+      "./types/autox/auto.d.ts",
+      "./types/autox/autojs.d.ts",
+      "./types/project/global.d.ts",
+      "./types/project/module.d.ts"
+    ],
+    "experimentalDecorators": false,
+    "emitDecoratorMetadata": false,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./src/**/*",
+    "./lib/**/*"
+  ],
+  "exclude": [
+    "./.vscode/",
+    "./build/",
+    "./dist/",
+    "./types/",
+    "./src/assets/",
+    "./src/static/"
+  ],
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compileOnSave": true
+}

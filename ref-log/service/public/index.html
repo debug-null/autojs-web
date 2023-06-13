@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>Express session demo</title>
+  </head>
+  <body>
+    <h1>Choose an action.</h1>
+    <button id="login" type="button" title="Simulate login">
+      Simulate login
+    </button>
+    <button id="logout" type="button" title="Simulate logout">
+      Simulate logout
+    </button>
+    <button id="wsButton" type="button" title="Open WebSocket connection">
+      Open WebSocket connection
+    </button>
+    <button id="wsSendButton" type="button" title="Send WebSocket message">
+      Send WebSocket message
+    </button>
+
+    <button id="sendBroadCase" type="button" title="Send WebSocket message">
+      所有设备下发广播
+    </button>
+    <button id="startScript" type="button" title="Send WebSocket message">
+      启动脚本
+    </button>
+    <button id="closeWs" type="button" title="Send WebSocket message">
+      关闭ws
+    </button>
+
+    <hr>
+    <div class="task-box" style="border: 1px solid #f21f22;padding:10px;border-radius: rpx;">
+      <input type="text" name="task" id="taskContent">
+      <button id="sendTask">下发任务</button>
+    </div>
+
+    <hr>
+    <h2>设备列表</h2>
+    <!-- 生成一个table -->
+    <table style="border-collapse: collapse;" width="100%">
+      <thead>
+        <tr>
+          <th style="border: 1px solid black;">设备名称</th>
+          <th style="border: 1px solid black;">设备Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid black;">第一台</td>
+          <td style="border: 1px solid black;">87979</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <pre id="messages" style="height: 400px; overflow: scroll"></pre>
+    <script src="app.js"></script>
+  </body>
+</html>

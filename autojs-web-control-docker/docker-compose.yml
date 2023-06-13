@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  # 数据库
+  yk-mysql:
+    build: ./mysql
+    container_name: yk-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - app-net
+
+  # 数据库管理工具
+  yk-mysql-admin:
+    image: phpmyadmin
+    container_name: yk-mysql-admin
+    links:
+      - yk-mysql
+    environment:
+      PMA_HOST: yk-mysql
+    ports:
+      - "9999:80"
+    networks:
+      - app-net
+
+  # api服务器
+  yk-server:
+    build: ./server
+    container_name: yk-server
+    links:
+      - yk-mysql
+    ports:
+      - "8889:8889"
+    networks:
+      - app-net
+
+  # 后台页面
+  yk-web:
+    build: ./web
+    container_name: yk-web
+    ports:
+      - "8888:80"
+    links:
+      - yk-server
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
