@@ -1,0 +1,31 @@
+{
+  "name": "end-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run watch:server\" \"npm run watch:web\"",
+    "dev": "cd autojs-web-control-docker/server && npm run dev && cd ../web && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:server": "cd autojs-web-control-docker/server && npm run dev",
+    "watch:web": "cd autojs-web-control-docker/web && npm run dev"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debug-null/autojs-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/debug-null/autojs-web/issues"
+  },
+  "homepage": "https://github.com/debug-null/autojs-web#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
