@@ -10,7 +10,7 @@
         "request": "launch",
         "env": { "NODE_ENV":"development" },
         "args": [
-          "${workspaceRoot}/modules/default/main.ts" // 入口文件
+          "${workspaceRoot}/src/modules/default/main.ts" // 入口文件
         ],
         "runtimeArgs": [
           "--nolazy",

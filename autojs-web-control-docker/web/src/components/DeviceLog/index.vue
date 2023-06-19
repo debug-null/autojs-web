@@ -92,6 +92,7 @@ export default {
     ...mapGetters(["name"]),
     showLogs() {
       let result = this.logs;
+      console.log("🚀 ~ file: index.vue:95 ~ showLogs ~ result:", result);
       if (this.deviceSelect) {
         result = result.filter((log) => {
           return log.device.device_id === this.deviceSelect;
@@ -114,6 +115,7 @@ export default {
     this.messageListener = message => {
       if (message.type === "log") {
         message.data.log = message.data.device.name + '-' + message.data.log;
+        console.log("🚀 ~ file: index.vue:117 ~ created ~  message.data.log:", message);
         this.logs.push(message.data);
         this.$refs.logScroller.scrollTop = this.$refs.logScroller.scrollHeight;
       }

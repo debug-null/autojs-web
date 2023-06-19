@@ -11,6 +11,7 @@ export default class ScriptExecutor {
   }
 
   public run(devices: string, fileName: string, script: string) {
+    console.log("🚀 ~ file: ScriptExecutor.ts:14 ~ ScriptExecutor ~ run ~ fileName:", fileName)
     const ol = DeviceManager.getInstance().getOnlineDevices();
 
     if (ol.length === 0) {
